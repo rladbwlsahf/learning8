@@ -1,0 +1,80 @@
+package human06;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class MapExam {
+
+	public static void main(String[] args) {
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		// map 컬렉션 추가.
+		
+		Integer a1 = map.put("김우진", 26);
+		Integer a2 = map.put("하재훈", 40);
+		Integer a3 = map.put("이지은", 30);
+		Integer a4 = map.put("이지은", 25);
+		// a4에 해당하는 것은 Key가 동일하므로 원래의 Key에 value를 대입시킴.
+		
+//		System.out.printf("a1(%d),a2(%d),a3(%d)", a1,a2,a3);
+		
+		// 검색의 기능
+		System.out.println("map.size = " + map.size());
+		System.out.println("이지은의 나이? " + map.get("이지은"));
+		boolean isEmpty = map.isEmpty();
+		System.out.println("map.isEmpty() : " + isEmpty);
+		
+		System.out.println("-------------------");
+		
+		boolean t1 = map.containsKey("김우진");	// map안에 key로써 존재하는가? true
+		boolean t2 = map.containsValue(26);		// map안에 value로써 존재하는가? true
+		boolean t3 = map.containsKey("이비리");	// map안에 key로써 존재하는가? false
+		boolean t4 = map.containsValue(34);		// map안에 value로써 존재하는가? false
+		
+		System.out.println(t1);
+		System.out.println(t2);
+		System.out.println(t3);
+		System.out.println(t4);
+		
+		System.out.println("-------------------");
+		
+		Set<String> keyset = map.keySet(); // map에 있는 key의 내용을 set의 형태로 추출함.
+		System.out.println("map.keySet() : " + keyset);
+	
+		// key를 추출하여 각 key별로 데이터를 추가로 추출하는 방법.
+		Iterator<String> iter = keyset.iterator(); // map의 key 값 기준으로 반복할 수 있는 환경 설정
+		while (iter.hasNext()) {
+			String key = iter.next();		// key를 추출하는 행위.
+			Integer value = map.get(key);	// key에 해당하는 value를 추출하는 행위.
+			
+			System.out.printf("key(%s) / Value(%d) \n",key,value);
+			
+		}
+		
+		System.out.println("-------------------");
+		
+		map.remove("이지은");	//map의 key 값 기준으로 반복할 수 있는 환경 설정
+		
+		iter = keyset.iterator(); // map의 key 값 기준으로 반복할 수 있는 환경 설정
+		while (iter.hasNext()) {
+			String key = iter.next();		// key를 추출하는 행위.
+			Integer value = map.get(key);	// key에 해당하는 value를 추출하는 행위.
+			
+			System.out.printf("key(%s) / Value(%d) \n",key,value);
+
+		}
+		System.out.println("-------------------");
+		
+		map.clear();	//map의 포함된 모든 값 제거
+		
+		iter = keyset.iterator(); // map의 key 값 기준으로 반복할 수 있는 환경 설정
+		while (iter.hasNext()) {
+			String key = iter.next();		// key를 추출하는 행위.
+			Integer value = map.get(key);	// key에 해당하는 value를 추출하는 행위.
+			
+			System.out.printf("key(%s) / Value(%d) \n",key,value);
+		}
+
+	}
+}
